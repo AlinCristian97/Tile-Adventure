@@ -158,6 +158,7 @@ MonoBehaviour:
   _runSpeed: 10
   _jumpSpeed: 28
   _climbSpeed: 5
+  _deathKick: {x: 25, y: 25}
 --- !u!61 &1207059430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6049130182415372333}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2cb48394c45b40c4aa2b230c2a8b2b16, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
