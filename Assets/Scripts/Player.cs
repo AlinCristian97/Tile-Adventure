@@ -13,13 +13,15 @@ public class Player : MonoBehaviour
     private bool _isAlive = true;
     
     // Cached component references
-    private Rigidbody2D _rigidBody;
+    private Rigidbody2D _rigidBody2D;
     private Animator _animator;
+    private Collider2D _collider2D;
     
     private void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _collider2D = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -33,29 +35,32 @@ public class Player : MonoBehaviour
     {
         float controlFlow = Input.GetAxis("Horizontal");
 
-        Vector2 playerVelocity = new Vector2(controlFlow * _runSpeed, _rigidBody.velocity.y);
-        _rigidBody.velocity = playerVelocity;
+        Vector2 playerVelocity = new Vector2(controlFlow * _runSpeed, _rigidBody2D.velocity.y);
+        _rigidBody2D.velocity = playerVelocity;
         
-        bool playerHasHorizontalSpeed = Mathf.Abs(_rigidBody.velocity.x) > Mathf.Epsilon;
+        bool playerHasHorizontalSpeed = Mathf.Abs(_rigidBody2D.velocity.x) > Mathf.Epsilon;
         _animator.SetBool("IsRunning", playerHasHorizontalSpeed);
     }
 
     private void Jump()
     {
+        if (!_collider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            return;
+
         if (Input.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, _jumpSpeed);
-            _rigidBody.velocity += jumpVelocityToAdd;
+            _rigidBody2D.velocity += jumpVelocityToAdd;
         }
     }
 
     private void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(_rigidBody.velocity.x) > Mathf.Epsilon;
+        bool playerHasHorizontalSpeed = Mathf.Abs(_rigidBody2D.velocity.x) > Mathf.Epsilon;
 
         if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2(Mathf.Sign(_rigidBody.velocity.x), 1f);
+            transform.localScale = new Vector2(Mathf.Sign(_rigidBody2D.velocity.x), 1f);
         }
     }
 }
