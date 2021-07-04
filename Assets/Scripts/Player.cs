@@ -13,23 +13,27 @@ public class Player : MonoBehaviour
     // State
     private bool _isAlive = true;
     
-    // Cached component references
+    // Cached references
     private Rigidbody2D _rigidBody2D;
     private Animator _animator;
     private Collider2D _collider2D;
+    
+    private float _startGravityScale;
 
     private void Awake()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
+        
+        _startGravityScale = _rigidBody2D.gravityScale;
     }
 
     private void Update()
     {
         Run();
-        Jump();
         ClimbLadder();
+        Jump();
         FlipSprite();
     }
 
@@ -47,12 +51,16 @@ public class Player : MonoBehaviour
     private void ClimbLadder()
     {
         if (!_collider2D.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            _animator.SetBool("IsClimbing", false);
+            _rigidBody2D.gravityScale = _startGravityScale;
             return;
+        }
 
         float controlThrow = Input.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(_rigidBody2D.velocity.x, controlThrow * _climbSpeed);
-
         _rigidBody2D.velocity = climbVelocity;
+        _rigidBody2D.gravityScale = 0f;
 
         bool playerHasVerticalSpeed = Mathf.Abs(_rigidBody2D.velocity.y) > Mathf.Epsilon;
         _animator.SetBool("IsClimbing", playerHasVerticalSpeed);
