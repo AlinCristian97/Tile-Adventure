@@ -8143,6 +8143,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1207059434 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6049130182415372332, guid: 34fac3ebb91083c43af2637e457b03d6, type: 3}
+  m_PrefabInstance: {fileID: 6049130180827248909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1960162302
 GameObject:
   m_ObjectHideFlags: 0
@@ -9616,6 +9621,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 821657139, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 669948248}
+    - target: {fileID: 821657140, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 6049130180827248910}
+    - target: {fileID: 765726066345414935, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 6049130180827248910}
+    - target: {fileID: 5432227863985402956, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 669948248}
     - target: {fileID: 6347323849518649836, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
       propertyPath: m_Name
       value: Cameras
@@ -9672,5 +9693,13 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 669948248}
+    - target: {fileID: 8957060635791949468, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_AnimatedTarget
+      value: 
+      objectReference: {fileID: 1207059434}
+    - target: {fileID: 8957060635791949468, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf0ef380d780b0540821481c38297b8e, type: 3}
